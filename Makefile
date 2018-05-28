@@ -6,13 +6,17 @@ clean:
 	rm -f source/* intermediate/* target/*
 
 
+
 ############################################################
 
 source/cmudict:
-	curl http://svn.code.sf.net/p/cmusphinx/code/trunk/cmudict/cmudict-0.7b > source/cmudict
+	curl http://svn.code.sf.net/p/cmusphinx/code/trunk/cmudict/cmudict-0.7b \
+		> source/cmudict
 
 source/kilgarriff:
-	curl http://www.kilgarriff.co.uk/BNClists/all.num.gz | gunzip > source/kilgarriff
+	curl http://www.kilgarriff.co.uk/BNClists/all.num.gz \
+		| gunzip \
+		> source/kilgarriff
 
 
 
@@ -26,7 +30,9 @@ source/kilgarriff:
 # ZOO  Z UW1
 
 intermediate/cmudict_05_no_comments: source/cmudict
-	cat source/cmudict | grep --text -v '^;;;' > intermediate/cmudict_05_no_comments
+	cat source/cmudict \
+		| grep --text -v '^;;;' \
+		> intermediate/cmudict_05_no_comments
 
 # CAT  K AE1 T
 # READ  R EH1 D
@@ -38,10 +44,14 @@ intermediate/cmudict_05_no_comments: source/cmudict
 # cmudict. (Something like "DEJA". "DEJA" in all ASCII is in fact
 # present.) It's probably OK to just remove this entry entirely.
 intermediate/cmudict_07_remove_bad_unicode: intermediate/cmudict_05_no_comments
-	cat intermediate/cmudict_05_no_comments | grep --text -v 'D EY2 JH AA1' > intermediate/cmudict_07_remove_bad_unicode
+	cat intermediate/cmudict_05_no_comments \
+		| grep --text -v 'D EY2 JH AA1' \
+		> intermediate/cmudict_07_remove_bad_unicode
 
 intermediate/cmudict_10_first_only: intermediate/cmudict_07_remove_bad_unicode
-	cat intermediate/cmudict_07_remove_bad_unicode | grep --text -v '^[^ ]*\([0-9]\)' > intermediate/cmudict_10_first_only
+	cat intermediate/cmudict_07_remove_bad_unicode \
+		| grep --text -v '^[^ ]*\([0-9]\)' \
+		> intermediate/cmudict_10_first_only
 
 # CAT  K AE1 T
 # READ  R EH1 D
@@ -49,7 +59,9 @@ intermediate/cmudict_10_first_only: intermediate/cmudict_07_remove_bad_unicode
 # ZOO  Z UW1
 
 intermediate/cmudict_20_discard_stress: intermediate/cmudict_10_first_only
-	cat intermediate/cmudict_10_first_only | ./discard_stress.py > intermediate/cmudict_20_discard_stress
+	cat intermediate/cmudict_10_first_only \
+		| ./discard_stress.py \
+		> intermediate/cmudict_20_discard_stress
 
 # CAT  K AE T
 # READ  R EH D
@@ -57,7 +69,8 @@ intermediate/cmudict_20_discard_stress: intermediate/cmudict_10_first_only
 # ZOO  Z UW
 
 intermediate/cmudict_processed: intermediate/cmudict_20_discard_stress
-	cp intermediate/cmudict_20_discard_stress intermediate/cmudict_processed
+	cp intermediate/cmudict_20_discard_stress \
+		intermediate/cmudict_processed
 
 # CAT  K AE T
 # READ  R EH D
@@ -75,7 +88,9 @@ intermediate/cmudict_processed: intermediate/cmudict_20_discard_stress
 # 1 zoo nn1 1
 
 intermediate/kilgarriff_05_discard_fields: source/kilgarriff
-	cat source/kilgarriff | awk '{print $$1, $$2}' > intermediate/kilgarriff_05_discard_fields
+	cat source/kilgarriff \
+		| awk '{print $$1, $$2}' \
+		> intermediate/kilgarriff_05_discard_fields
 
 # 36 !!WHOLE_CORPUS
 # 20 the
@@ -84,7 +99,9 @@ intermediate/kilgarriff_05_discard_fields: source/kilgarriff
 # 1 zoo
 
 intermediate/kilgarriff_07_discard_total: intermediate/kilgarriff_05_discard_fields
-	cat intermediate/kilgarriff_05_discard_fields | sed '1d' > intermediate/kilgarriff_07_discard_total
+	cat intermediate/kilgarriff_05_discard_fields \
+		| sed '1d' \
+		> intermediate/kilgarriff_07_discard_total
 
 # 20 the
 # 10 read
@@ -92,17 +109,22 @@ intermediate/kilgarriff_07_discard_total: intermediate/kilgarriff_05_discard_fie
 # 1 zoo
 
 intermediate/kilgarriff_10_squashed: intermediate/kilgarriff_07_discard_total
-	cat intermediate/kilgarriff_07_discard_total | ./squash_kilgarriff.py > intermediate/kilgarriff_10_squashed
+	cat intermediate/kilgarriff_07_discard_total \
+		| ./squash_kilgarriff.py \
+		> intermediate/kilgarriff_10_squashed
 
 # 20 the
 # 15 read
 # 1 zoo
 
 intermediate/kilgarriff_20_sorted: intermediate/kilgarriff_10_squashed
-	cat intermediate/kilgarriff_10_squashed | sort --numeric-sort --reverse > intermediate/kilgarriff_20_sorted
+	cat intermediate/kilgarriff_10_squashed \
+		| sort --numeric-sort --reverse \
+		> intermediate/kilgarriff_20_sorted
 
 intermediate/kilgarriff_processed: intermediate/kilgarriff_20_sorted
-	cp intermediate/kilgarriff_20_sorted intermediate/kilgarriff_processed
+	cp intermediate/kilgarriff_20_sorted \
+		intermediate/kilgarriff_processed
 
 # 20 the
 # 15 read
@@ -115,20 +137,31 @@ intermediate/kilgarriff_processed: intermediate/kilgarriff_20_sorted
 # This rule also generates the `uncorrelated` file, but I'm not
 # sure how to represent this in Make syntax.
 intermediate/correlated_arpa: intermediate/kilgarriff_processed intermediate/cmudict_processed
-	./make_correlated.py intermediate/cmudict_processed intermediate/kilgarriff_processed intermediate/correlated_arpa intermediate/uncorrelated
+	./make_correlated.py \
+		intermediate/cmudict_processed \
+		intermediate/kilgarriff_processed \
+		intermediate/correlated_arpa \
+		intermediate/uncorrelated
 
 # 20 the  DH AH
 # 15 read  R EH D
 # 1 zoo  Z UW
 
 intermediate/correlated_ipa: intermediate/correlated_arpa
-	cat intermediate/correlated_arpa | ./to_ipa.py > intermediate/correlated_ipa
+	cat intermediate/correlated_arpa \
+		| ./to_ipa.py \
+		> intermediate/correlated_ipa
+
 
 
 ############################################################
 
 target/q1_frequencies: intermediate/correlated_ipa
-	cat intermediate/correlated_ipa | ./compute_frequencies.py > target/q1_frequencies
+	cat intermediate/correlated_ipa \
+		| ./compute_frequencies.py \
+		> target/q1_frequencies
 
 target/q2_post_w_frequencies: intermediate/correlated_ipa
-	cat intermediate/correlated_ipa | ./compute_post_w_frequencies.py > target/q2_post_w_frequencies
+	cat intermediate/correlated_ipa \
+		| ./compute_post_w_frequencies.py \
+		> target/q2_post_w_frequencies
