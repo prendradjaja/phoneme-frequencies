@@ -15,19 +15,19 @@ SOURCE FILES:
 ------------------------------------------------------------
 
 PROCESS CMUDICT:
-  DISCARD COMMENT LINES:
-    cmudict.05-no-comments:
-      manually edit
+x DISCARD COMMENT LINES:
+    cmudict.05_no_comments:
+      grep
 
-  DISCARD EXTRA PRONUNCIATIONS:
-    cmudict.10-first-only:
+x DISCARD EXTRA PRONUNCIATIONS:
+    cmudict.10_first_only:
       CAT  K AE1 T
       READ  R EH1 D
       THE  DH AH0
       ZOO  Z UW1
 
-  DISCARD STRESS INFO IN CMUDICT:
-    cmudict.20-discard-stress:
+x DISCARD STRESS INFO IN CMUDICT:
+    cmudict.20_discard_stress:
       CAT  K AE T
       READ  R EH D
       THE  DH AH
@@ -35,12 +35,12 @@ PROCESS CMUDICT:
 
 
 PROCESS KILGARRIFF:
-  DISCARD UNNEEDED FIELDS 3 AND 4:
-    kilgarriff.05-discard-fields:
+x DISCARD UNNEEDED FIELDS 3 AND 4:
+    kilgarriff.05_discard_fields:
       use awk?
 
-  "SQUASH" "DUPLICATES":
-    kilgarriff.10-squashed:
+x "SQUASH" "DUPLICATES":
+    kilgarriff.10_squashed:
       20 the
       15 read
       1 zoo
@@ -48,7 +48,7 @@ PROCESS KILGARRIFF:
 ------------------------------------------------------------
 
 CORRELATE:
-  correlated:
+. correlated:
     20 the  DH AH
     15 read  R EH D
     1 zoo  Z UW
@@ -56,14 +56,14 @@ CORRELATE:
 ------------------------------------------------------------
 
 QUESTIONS:
-  Q1: PHONEME FREQUENCIES
+. Q1: PHONEME FREQUENCIES
     phoneme_counts = defaultdict(int)
     for line in correlated:
       count, word, phonemes = ...
       for p in phonemes:
         phoneme_counts[p] += count
 
-  Q2: POST-W PHONEME FREQUENCIES
+. Q2: POST-W PHONEME FREQUENCIES
     def post_ws(phonemes):
       for (p, pnext) in zip(phonemes, phonemes[1:]):
         if p is `w`:
