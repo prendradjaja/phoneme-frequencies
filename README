@@ -12,7 +12,11 @@ To do:
 . reread cmloegcmluin
 
 Changelog:
-- v0.1.0
-  - Use only the first pronunciation in cmudict
-  - Discard uncorrelateds entirely
-  - No manual error checking etc
+- v0.1.0: First steps; Frequencies generally and post-/w/
+  - Processing:
+    - Use only the first pronunciation in cmudict
+    - Discard uncorrelateds entirely
+    - No manual error checking etc
+  - Results:
+    - Q1: Frequencies of phonemes generally
+    - Q2: Frequencies of phonemes post-/w/
