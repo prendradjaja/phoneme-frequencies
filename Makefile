@@ -59,5 +59,14 @@ kilgarriff_processed: kilgarriff_20_sorted
 
 ############################################################
 
+# This rule also generates the `uncorrelated` file, but I'm not
+# sure how to represent this in Make syntax.
 correlated: kilgarriff_processed cmudict_processed
 	./make_correlated.py
+
+
+
+############################################################
+
+# q1_frequencies: correlated
+# 	cat correlated | ./compute_frequencies.py > 
