@@ -1,0 +1,69 @@
+source files
+============
+  kilgarriff:
+    20 the
+    10 read (past tense)
+    5 read (present tense)
+    1 zoo
+
+  cmudict:
+    CAT  K AE1 T
+    READ  R EH1 D
+    READ(1)  R IY1 D
+    THE  DH AH0
+    ZOO  Z UW1
+
+discard extra pronunciations in cmudict:
+========================================
+  cmudict.10-first-only:
+    CAT  K AE1 T
+    READ  R EH1 D
+    THE  DH AH0
+    ZOO  Z UW1
+
+discard stress info in cmudict:
+===============================
+  cmudict.20-discard-stress:
+    CAT  K AE T
+    READ  R EH D
+    THE  DH AH
+    ZOO  Z UW
+
+"squash" kilgarriff parts of speech together
+============================================
+  kilgarriff.10-squashed:
+    20 the
+    15 read
+    1 zoo
+
+correlate
+=========
+  correlated:
+    20 the  DH AH
+    15 read  R EH D
+    1 zoo  Z UW
+
+
+--------------------------------------------------------------------------------
+
+
+q1: phoneme frequencies
+=======================
+  phoneme_counts = defaultdict(int)
+  for line in correlated:
+    count, word, phonemes = ...
+    for p in phonemes:
+      phoneme_counts[p] += count
+
+q2: post-w phoneme frequencies
+==============================
+  def post_ws(phonemes):
+    for (p, pnext) in zip(phonemes, phonemes[1:]):
+      if p is `w`:
+        yield pnext
+
+  phoneme_counts = defaultdict(int)
+  for line in correlated:
+    count, word, phonemes = ...
+    for p in post_ws(phonemes):
+      phoneme_counts[p] += count

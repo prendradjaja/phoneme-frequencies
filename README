@@ -1,0 +1,10 @@
+Sources:
+- https://cmloegcmluin.wordpress.com/2012/11/10/relative-frequencies-of-english-phonemes/
+- http://www.speech.cs.cmu.edu/cgi-bin/cmudict
+- http://www.kilgarriff.co.uk/bnc-readme.html
+
+To do:
+. use more than just first pronunciation in cmudict
+. phone or phoneme?
+. manual error checking
+. reread cmloegcmluin
