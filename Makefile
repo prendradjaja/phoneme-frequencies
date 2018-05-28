@@ -1,22 +1,34 @@
-.PHONY: clean all
+.PHONY: clean all copy_cmudict copy_kilgarriff download_cmudict download_kilgarriff
 
 all: intermediate/correlated_ipa target/q1_frequencies target/q2_post_w_frequencies
 
 clean:
 	rm -f source/* intermediate/* target/*
 
+copy_cmudict:
+	cp local_source/cmudict    source/cmudict
+
+copy_kilgarriff:
+	cp local_source/kilgarriff source/kilgarriff
+
+download_cmudict:
+	curl http://svn.code.sf.net/p/cmusphinx/code/trunk/cmudict/cmudict-0.7b \
+		> source/cmudict
+
+download_kilgarriff:
+	curl http://www.kilgarriff.co.uk/BNClists/all.num.gz \
+		| gunzip \
+		> source/kilgarriff
+
 
 
 ############################################################
 
-source/cmudict:
-	curl http://svn.code.sf.net/p/cmusphinx/code/trunk/cmudict/cmudict-0.7b \
-		> source/cmudict
+source/cmudict: copy_cmudict
+source/kilgarriff: copy_kilgarriff
 
-source/kilgarriff:
-	curl http://www.kilgarriff.co.uk/BNClists/all.num.gz \
-		| gunzip \
-		> source/kilgarriff
+# source/cmudict: download_cmudict
+# source/kilgarriff: download_kilgarriff
 
 
 
