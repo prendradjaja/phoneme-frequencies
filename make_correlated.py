@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
 
+import sys
+
+assert len(sys.argv) == 5
+_, cmudict_in, kilgarriff_in, correlated_out, uncorrelated_out = sys.argv
+
 cmudict = {}
 
-with open('./cmudict_processed') as cmudict_file:
+with open(cmudict_in) as cmudict_file:
     for line in cmudict_file:
         word, *phonemes = line.split()
         cmudict[word.lower()] = phonemes
 
-with open('./kilgarriff_processed') as kilgarriff_file:
-    with open('./correlated_arpa', 'w') as correlated:
-        with open('./uncorrelated', 'w') as uncorrelated:
+with open(kilgarriff_in) as kilgarriff_file:
+    with open(correlated_out, 'w') as correlated:
+        with open(uncorrelated_out, 'w') as uncorrelated:
             for line in kilgarriff_file:
                 count_str, word = line.split()
                 if word in cmudict:

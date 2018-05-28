@@ -115,7 +115,7 @@ kilgarriff_processed: kilgarriff_20_sorted
 # This rule also generates the `uncorrelated` file, but I'm not
 # sure how to represent this in Make syntax.
 correlated_arpa: kilgarriff_processed cmudict_processed
-	./make_correlated.py
+	./make_correlated.py cmudict_processed kilgarriff_processed correlated_arpa uncorrelated
 
 # 20 the  DH AH
 # 15 read  R EH D
