@@ -18,6 +18,8 @@ To do:
 x ARPAbet -> IPA
 
 Changelog:
+- v0.3.2: Add correlated_ipa to local_intermediate/
+
 - v0.3.1: Various
   - Move *.py into scripts/
   - Add `make test`

@@ -21,6 +21,7 @@ download_kilgarriff:
 		> source/kilgarriff
 
 test:
+	diff local_intermediate/correlated_ipa  intermediate/correlated_ipa
 	diff local_target/q1_frequencies        target/q1_frequencies
 	diff local_target/q2_post_w_frequencies target/q2_post_w_frequencies
 
