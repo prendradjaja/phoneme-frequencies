@@ -1,6 +1,11 @@
 .PHONY: clean all copy_cmudict copy_kilgarriff download_cmudict download_kilgarriff test
 
-all: intermediate/correlated_ipa target/q1_frequencies target/q2_post_w_frequencies
+ALL := intermediate/correlated_ipa
+ALL += intermediate/correlated_ipa_no_spaces
+ALL += target/q1_frequencies
+ALL += target/q2_post_w_frequencies
+
+all: $(ALL)
 
 clean:
 	rm -f source/* intermediate/* target/*
@@ -168,6 +173,11 @@ intermediate/correlated_ipa: intermediate/correlated_arpa
 	cat intermediate/correlated_arpa \
 		| scripts/to_ipa.py \
 		> intermediate/correlated_ipa
+
+intermediate/correlated_ipa_no_spaces: intermediate/correlated_ipa
+	cat intermediate/correlated_ipa \
+		| scripts/unspace_ipa.py \
+		> intermediate/correlated_ipa_no_spaces
 
 
 
