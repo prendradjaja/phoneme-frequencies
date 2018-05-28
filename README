@@ -8,6 +8,7 @@ Sources:
 - http://www.kilgarriff.co.uk/bnc-readme.html
 
 To do:
+. at or before v1.0.0, include changelog details in tags too
 . use more than just first pronunciation in cmudict
 . <er> is one phoneme etc
 . phone or phoneme?
