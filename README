@@ -10,3 +10,9 @@ To do:
 . manual error checking
 . transcribe some of the uncorrelateds
 . reread cmloegcmluin
+
+Changelog:
+- v0.1.0
+  - Use only the first pronunciation in cmudict
+  - Discard uncorrelateds entirely
+  - No manual error checking etc
