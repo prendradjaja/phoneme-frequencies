@@ -8,7 +8,7 @@ with open('./cmudict_processed') as cmudict_file:
         cmudict[word.lower()] = phonemes
 
 with open('./kilgarriff_processed') as kilgarriff_file:
-    with open('./correlated', 'w') as correlated:
+    with open('./correlated_arpa', 'w') as correlated:
         with open('./uncorrelated', 'w') as uncorrelated:
             for line in kilgarriff_file:
                 count_str, word = line.split()

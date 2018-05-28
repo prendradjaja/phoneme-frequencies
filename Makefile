@@ -1,9 +1,9 @@
 .PHONY: clean all
 
-all: correlated q1_frequencies q2_post_w_frequencies
+all: correlated_ipa q1_frequencies q2_post_w_frequencies
 
 clean:
-	rm -f kilgarriff* cmudict* correlated uncorrelated
+	rm -f kilgarriff* cmudict* correlated_* uncorrelated
 
 
 ############################################################
@@ -114,19 +114,21 @@ kilgarriff_processed: kilgarriff_20_sorted
 
 # This rule also generates the `uncorrelated` file, but I'm not
 # sure how to represent this in Make syntax.
-correlated: kilgarriff_processed cmudict_processed
+correlated_arpa: kilgarriff_processed cmudict_processed
 	./make_correlated.py
 
 # 20 the  DH AH
 # 15 read  R EH D
 # 1 zoo  Z UW
 
+correlated_ipa: correlated_arpa
+	cat correlated_arpa | ./to_ipa.py > correlated_ipa
 
 
 ############################################################
 
-q1_frequencies: correlated
-	cat correlated | ./compute_frequencies.py > q1_frequencies
+q1_frequencies: correlated_ipa
+	cat correlated_ipa | ./compute_frequencies.py > q1_frequencies
 
-q2_post_w_frequencies: correlated
-	cat correlated | ./compute_post_w_frequencies.py > q2_frequencies
+q2_post_w_frequencies: correlated_ipa
+	cat correlated_ipa | ./compute_post_w_frequencies.py > q2_post_w_frequencies

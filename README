@@ -10,9 +10,11 @@ To do:
 . manual error checking
 . transcribe some of the uncorrelateds
 . reread cmloegcmluin
-. ARPAbet -> IPA
+x ARPAbet -> IPA
 
 Changelog:
+- v0.2.0: Translate ARPAbet to IPA
+
 - v0.1.0: First steps; Frequencies generally and post-/w/
   - Processing:
     - Use only the first pronunciation in cmudict

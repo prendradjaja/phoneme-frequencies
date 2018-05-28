@@ -5,7 +5,7 @@ import collections
 
 def post_ws(phonemes):
     for (p, pnext) in zip(phonemes, phonemes[1:]):
-        if p is 'W':
+        if p is 'w':
             yield pnext
 
 counts = collections.defaultdict(int)
