@@ -17,6 +17,13 @@ To do:
 x ARPAbet -> IPA
 
 Changelog:
+- v0.3.0: Various
+  - Add local copies of source data and results
+  - Default to local copies
+  - Move all data files into subdirectories
+  - Add MIT license
+  - Refactor: Move file paths out of Python and into Makefile
+
 - v0.2.0: Translate ARPAbet to IPA
 
 - v0.1.0: First steps; Frequencies generally and post-/w/
