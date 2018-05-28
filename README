@@ -20,6 +20,7 @@ x ARPAbet -> IPA
 Changelog:
 - v0.3.1: Various
   - Move *.py into scripts/
+  - Add `make test`
 
 - v0.3.0: Various
   - Add local copies of source data and results
