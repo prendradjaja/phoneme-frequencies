@@ -1,4 +1,4 @@
-.PHONY: clean all copy_cmudict copy_kilgarriff download_cmudict download_kilgarriff
+.PHONY: clean all copy_cmudict copy_kilgarriff download_cmudict download_kilgarriff test
 
 all: intermediate/correlated_ipa target/q1_frequencies target/q2_post_w_frequencies
 
@@ -19,6 +19,10 @@ download_kilgarriff:
 	curl http://www.kilgarriff.co.uk/BNClists/all.num.gz \
 		| gunzip \
 		> source/kilgarriff
+
+test:
+	diff local_target/q1_frequencies        target/q1_frequencies
+	diff local_target/q2_post_w_frequencies target/q2_post_w_frequencies
 
 
 
@@ -72,7 +76,7 @@ intermediate/cmudict_10_first_only: intermediate/cmudict_07_remove_bad_unicode
 
 intermediate/cmudict_20_discard_stress: intermediate/cmudict_10_first_only
 	cat intermediate/cmudict_10_first_only \
-		| ./discard_stress.py \
+		| scripts/discard_stress.py \
 		> intermediate/cmudict_20_discard_stress
 
 # CAT  K AE T
@@ -122,7 +126,7 @@ intermediate/kilgarriff_07_discard_total: intermediate/kilgarriff_05_discard_fie
 
 intermediate/kilgarriff_10_squashed: intermediate/kilgarriff_07_discard_total
 	cat intermediate/kilgarriff_07_discard_total \
-		| ./squash_kilgarriff.py \
+		| scripts/squash_kilgarriff.py \
 		> intermediate/kilgarriff_10_squashed
 
 # 20 the
@@ -149,7 +153,7 @@ intermediate/kilgarriff_processed: intermediate/kilgarriff_20_sorted
 # This rule also generates the `uncorrelated` file, but I'm not
 # sure how to represent this in Make syntax.
 intermediate/correlated_arpa: intermediate/kilgarriff_processed intermediate/cmudict_processed
-	./make_correlated.py \
+	scripts/make_correlated.py \
 		intermediate/cmudict_processed \
 		intermediate/kilgarriff_processed \
 		intermediate/correlated_arpa \
@@ -161,7 +165,7 @@ intermediate/correlated_arpa: intermediate/kilgarriff_processed intermediate/cmu
 
 intermediate/correlated_ipa: intermediate/correlated_arpa
 	cat intermediate/correlated_arpa \
-		| ./to_ipa.py \
+		| scripts/to_ipa.py \
 		> intermediate/correlated_ipa
 
 
@@ -170,10 +174,10 @@ intermediate/correlated_ipa: intermediate/correlated_arpa
 
 target/q1_frequencies: intermediate/correlated_ipa
 	cat intermediate/correlated_ipa \
-		| ./compute_frequencies.py \
+		| scripts/compute_frequencies.py \
 		> target/q1_frequencies
 
 target/q2_post_w_frequencies: intermediate/correlated_ipa
 	cat intermediate/correlated_ipa \
-		| ./compute_post_w_frequencies.py \
+		| scripts/compute_post_w_frequencies.py \
 		> target/q2_post_w_frequencies
