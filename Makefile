@@ -1,6 +1,6 @@
 .PHONY: clean all
 
-all: correlated
+all: correlated q1_frequencies
 
 clean:
 	rm kilgarriff_* cmudict_* correlated uncorrelated
@@ -68,5 +68,5 @@ correlated: kilgarriff_processed cmudict_processed
 
 ############################################################
 
-# q1_frequencies: correlated
-# 	cat correlated | ./compute_frequencies.py > 
+q1_frequencies: correlated
+	cat correlated | ./compute_frequencies.py > q1_frequencies
