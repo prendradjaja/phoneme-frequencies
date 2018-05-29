@@ -2,7 +2,6 @@
 . use more than just first pronunciation in cmudict
 . <er> is one phoneme etc
 . phone or phoneme?
-. rename to phoneme-frequencies? (but really, is it phone or phoneme in this case?)
 . manual error checking
 . transcribe some of the uncorrelateds
 . reread cmloegcmluin
