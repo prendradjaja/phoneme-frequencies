@@ -1,0 +1,26 @@
+Changelog:
+- v0.3.3: Add correlated_ipa_no_spaces
+
+- v0.3.2: Add correlated_ipa to local_intermediate/
+
+- v0.3.1: Various
+  - Move *.py into scripts/
+  - Add `make test`
+
+- v0.3.0: Various
+  - Add local copies of source data and results
+  - Default to local copies
+  - Move all data files into subdirectories
+  - Add MIT license
+  - Refactor: Move file paths out of Python and into Makefile
+
+- v0.2.0: Translate ARPAbet to IPA
+
+- v0.1.0: First steps; Frequencies generally and post-/w/
+  - Processing:
+    - Use only the first pronunciation in cmudict
+    - Discard uncorrelateds entirely
+    - No manual error checking etc
+  - Results:
+    - Q1: Frequencies of phonemes generally
+    - Q2: Frequencies of phonemes post-/w/
