@@ -2,7 +2,7 @@
 . use more than just first pronunciation in cmudict
 . <er> is one phoneme etc
 . phone or phoneme?
-. manual error checking
+. manual error checking a la blumeyer
 . transcribe some of the uncorrelateds
 . reread blumeyer
 x ARPAbet -> IPA
