@@ -9,9 +9,9 @@ Also, an estimate of the relative frequencies of English phonemes
 that follow /w/.
 
 ## Methodology
-Reproducing the work of Doug Blumeyer[1], I correlated the CMU
-Pronouncing Dictionary ("CMUdict")[2] and Adam Kilgarriff's
-unlemmatized frequency list[3] for the British National Corpus to
+Reproducing the work of [Doug Blumeyer][blumeyer], I correlated the [CMU
+Pronouncing Dictionary ("CMUdict")][cmudict] and [Adam Kilgarriff's
+unlemmatized frequency list][kilgarriff] for the British National Corpus to
 find phoneme frequencies generally. I extended this technique to
 estimate post-/w/ phoneme frequencies as well.
 
@@ -40,3 +40,7 @@ over British ones.
 - Doug Blumeyer, ["Relative Frequencies of English Phonemes"][blumeyer]
 - [CMU Pronouncing Dictionary][cmudict] (Local copy at version 0.7b. Retrieved May 28, 2018.)
 - Adam Kilgarriff, [word frequencies for the BNC][kilgarriff] (Local copy retrieved May 28, 2018.)
+
+[blumeyer]: https://cmloegcmluin.wordpress.com/2012/11/10/relative-frequencies-of-english-phonemes/
+[cmudict]: http://www.speech.cs.cmu.edu/cgi-bin/cmudict
+[kilgarriff]: http://www.kilgarriff.co.uk/bnc-readme.html
