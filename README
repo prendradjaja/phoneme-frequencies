@@ -1,11 +1,41 @@
+SUMMARY:
+  An estimate of the relative frequencies of English phonemes.
+Also, an estimate of the relative frequencies of English phonemes
+that follow /w/.
+
+METHODOLOGY:
+  Reproducing the work of Doug Blumeyer[1], I correlated the CMU
+Pronouncing Dictionary ("CMUdict")[2] and Adam Kilgarriff's
+unlemmatized frequency list[3] for the British National Corpus to
+find phoneme frequencies generally. I extended this technique to
+estimate post-/w/ phoneme frequencies as well.
+
+LIMITATIONS:
+  As Blumeyer notes, the source datasets have some limitations.
+CMUdict conflates "schwa with the near-open central vowel" and
+has "several noticeable errors." Kilgarriff's frequency list has
+some formatting issues that make it hard to work with words with
+accents and apostrophes, (at this time, I've completely ignored
+this issue) including common contractions.
+
+  Blumeyer did manual error checking on several hundred of the
+most common words. I have not done this.
+
+OTHER NOTES:
+  While the Kilgarriff list is for the British National Corpus, a
+quick inspection suggests that it uses American pronunciations
+over British ones.
+
+------------------------------------------------------------
+
 Versions of local copies:
 - cmudict: 0.7b. Retrieved May 28, 2018.
 - kilgarriff: Retrieved May 28, 2018.
 
 Sources:
-- https://cmloegcmluin.wordpress.com/2012/11/10/relative-frequencies-of-english-phonemes/
-- http://www.speech.cs.cmu.edu/cgi-bin/cmudict
-- http://www.kilgarriff.co.uk/bnc-readme.html
+  [1] https://cmloegcmluin.wordpress.com/2012/11/10/relative-frequencies-of-english-phonemes/
+  [2] http://www.speech.cs.cmu.edu/cgi-bin/cmudict
+  [3] http://www.kilgarriff.co.uk/bnc-readme.html
 
 To do:
 . at or before v1.0.0, include changelog details in tags too
