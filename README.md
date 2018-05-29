@@ -1,7 +1,7 @@
 ## Quick links
-- [Words by count in BNC with pronunciations](local_intermediate/correlated_ipa_no_spaces)
 - [Phonemes by frequency](local_target/q1_frequencies)
 - [Phonemes by frequency post-/w/](local_target/q2_post_w_frequencies)
+- [Words by count in BNC with pronunciations](local_intermediate/correlated_ipa_no_spaces)
 
 ## Summary
 An estimate of the relative frequencies of English phonemes.
