@@ -3,12 +3,14 @@ SUMMARY:
 Also, an estimate of the relative frequencies of English phonemes
 that follow /w/.
 
+
 METHODOLOGY:
   Reproducing the work of Doug Blumeyer[1], I correlated the CMU
 Pronouncing Dictionary ("CMUdict")[2] and Adam Kilgarriff's
 unlemmatized frequency list[3] for the British National Corpus to
 find phoneme frequencies generally. I extended this technique to
 estimate post-/w/ phoneme frequencies as well.
+
 
 LIMITATIONS:
   As Blumeyer notes, the source datasets have some limitations.
@@ -20,6 +22,12 @@ this issue) including common contractions.
 
   Blumeyer did manual error checking on several hundred of the
 most common words. I have not done this.
+
+  The CMUdict has multiple pronunciations for some words. For
+these words, I used only the first pronunciation given. It's not
+clear to me if in these cases the multiple pronunciations are
+ordered in some way or just ordered arbitrarily.
+
 
 OTHER NOTES:
   While the Kilgarriff list is for the British National Corpus, a
