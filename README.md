@@ -15,6 +15,14 @@ unlemmatized frequency list][kilgarriff] for the British National Corpus to
 find phoneme frequencies generally. I extended this technique to
 estimate post-/w/ phoneme frequencies as well.
 
+## Tools used
+
+I used a combination of Python and Unix tools (grep, sed) for text processing.
+
+Also, since there are many steps with various dependencies in between them,
+GNU Make was a decent fit for modeling the dependencies -- easy enough to just
+run `make` after each modification to my code.
+
 ## Limitations
 As Blumeyer notes, the source datasets have some limitations.
 CMUdict conflates "schwa with the near-open central vowel" and
